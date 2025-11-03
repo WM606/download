@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WM</title>
+    <title>WMط</title>
     <style>
+        /* --- التصميم المُحدث لدمج الخلفيات --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><text x="50%" y="50%" font-size="40" text-anchor="middle" dominant-baseline="middle" fill="rgba(0,0,0,0.05)" transform="rotate(-45 100 100)">WM</text></svg>');
-            background-repeat: repeat;
+            
+            /* 1. الخلفية العامة (BODY): هنا يجب وضع wm.png */
+            /* حاليًا نستخدم لون داكن، يرجى استبدال اللون بصورة wm.jpg عند توفرها */
+            background-color: #1a1a1a; 
+            /* background-image: url('wm.jpg'); */ 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -21,16 +28,40 @@
         }
         
         .container {
-            background-color: rgba(255, 255, 255, 0.9);
+            /* 2. خلفية صندوق التنزيل (CONTAINER): استخدام WM.png */
+            background-image: url('WM.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            /* طبقة شفافة لضمان قراءة النص فوق الصورة */
+            position: relative;
+            z-index: 1;
+
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
             max-width: 500px;
             width: 90%;
+            margin-top: 50px;
+            overflow: hidden; /* لمنع ظهور أي شيء خارج حدود الصندوق */
         }
         
+        /* طبقة تظليل داخلية لزيادة تباين النص مع الخلفية (اختياري) */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4); /* تظليل 40% */
+            z-index: -1;
+        }
+
+        /* تعديل ألوان النص لتظهر فوق الخلفية المظلمة لـ WM.jpg */
         h1 {
-            color: #333;
+            color: #ffffff; /* أبيض */
             margin-bottom: 30px;
         }
         
@@ -50,35 +81,29 @@
             font-size: 18px;
             color: white;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
         }
         
         .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
         
         .red {
             background-color: #e74c3c;
         }
         
-        .green {
-            background-color: #2ecc71;
-        }
-        
-        .yellow {
-            background-color: #f1c40f;
-            color: #333;
-        }
-        
         .instructions {
             margin-top: 30px;
-            color: #666;
+            color: #f0f0f0; /* رمادي فاتح ليظهر فوق الخلفية */
             font-size: 14px;
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    
     <div class="container">
         <h1>صفحة التنزيل</h1>
         
